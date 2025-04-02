@@ -7,3 +7,6 @@ openai>=0.27.0
 anthropic>=0.3.0
 python-json-logger>=2.0.0
 typing-extensions>=4.0.0
+build
+twine
+wheel

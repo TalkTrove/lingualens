@@ -172,3 +172,11 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Ignore all files in the examples directory
+examples/*
+
+# Ignore all files in the tests directory
+tests/*
+
+
