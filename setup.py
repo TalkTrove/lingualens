@@ -7,8 +7,8 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name="lingualens",
-    version="1.0.0",
+    name="python-lingualens", # Distribution name on PyPI
+    version="1.0.2",
     packages=find_packages(),
     package_dir={"": "."},
     package_data={

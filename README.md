@@ -17,16 +17,7 @@ It provides a structured way to:
 You can install LinguaLens directly from PyPI:
 
 ```bash
-pip install lingualens
-```
-
-Alternatively, for development, you can clone this repository and install it in editable mode:
-
-```bash
-git clone https://github.com/your-github-username/lingualens.git # Replace with your repo URL
-cd lingualens
-pip install -e .
-pip install -r requirements.txt # Install dependencies
+pip install python-lingualens
 ```
 
 ## Quick Start Example
@@ -94,66 +85,4 @@ pip install -r requirements.txt # Install dependencies
 *   **`PromptGenerator`**: Creates detailed prompts for the LLM based on configuration.
 *   **`LLMResponseParser`**: Extracts structured data from LLM responses.
 *   **`MetricsCalculator`**: Aggregates scores and performs calculations.
-*   **`ConfigManager`**: Loads configurations from `src/pool/*.json`.
-
-## Configuration
-
-Evaluation behavior is driven by JSON configuration files located in `src/pool/`:
-
-*   `task_pool.json`: Defines different evaluation tasks, their descriptions, system prompts, associated metrics, and the weight of each metric in the final score.
-*   `metrics_pool.json`: Defines individual metrics, their descriptions, and scoring criteria (e.g., score ranges and what each score level means).
-
-You can customize these files or add new tasks and metrics to tailor the evaluation to your specific needs.
-
-## Publishing to PyPI
-
-These instructions assume you have a PyPI account and have `twine` installed (`pip install twine`).
-
-1.  **Update Version:**
-    *   Increment the `__version__` variable in `src/__init__.py`.
-    *   Optionally, update the version in `setup.cfg` as well if you use it for metadata.
-
-2.  **Build the Package:**
-    Make sure you have the latest build tools:
-    ```bash
-    pip install --upgrade build wheel
-    ```
-    Remove any old distribution files:
-    ```bash
-    rm -rf dist/ build/ src/*.egg-info
-    ```
-    Build the source distribution and wheel:
-    ```bash
-    python -m build
-    ```
-
-3.  **Check the Distribution (Optional but Recommended):**
-    ```bash
-    twine check dist/*
-    ```
-
-4.  **Upload to TestPyPI (Optional but Recommended):**
-    First, upload to the Test Python Package Index to ensure everything works.
-    ```bash
-    twine upload --repository testpypi dist/*
-    ```
-    You will be prompted for your TestPyPI username and password.
-    You can then try installing from TestPyPI:
-    ```bash
-    pip install --index-url https://test.pypi.org/simple/ --no-deps lingualens
-    ```
-
-5.  **Upload to PyPI (Live):**
-    Once you are confident, upload to the official PyPI.
-    ```bash
-    twine upload dist/*
-    ```
-    You will be prompted for your PyPI username and password.
-
-**Updating the Package:**
-
-To publish a new version, simply repeat the steps above:
-
-1.  Update the version number in `src/__init__.py` (and potentially `setup.cfg`).
-2.  Re-build the package (`python -m build`).
-3.  Upload the new distribution files (`twine upload dist/*`).
+*   **`ConfigManager`**: Loads configurations from pool

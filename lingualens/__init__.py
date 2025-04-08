@@ -3,7 +3,7 @@ LinguaLens - LLM-Powered Content Evaluation
 A flexible Python framework for evaluating content quality using Large Language Models (LLMs).
 """
 
-__version__ = "1.0.0"
+__version__ = "1.0.2"
 
 from .evaluator.evaluator import Evaluator
 from .models.llm_manager import LLMManager, BaseLLMClient

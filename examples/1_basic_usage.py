@@ -1,9 +1,7 @@
 import os
 import logging
-#from lingualens import Evaluator, LLMManager # Use the package name defined in setup.py
+from lingualens import Evaluator, LLMManager # Use the package name defined in setup.py
 from dotenv import load_dotenv
-from lingualens.evaluator.evaluator import Evaluator
-from lingualens.models.llm_manager import LLMManager, BaseLLMClient
 
 # Configure basic logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
