@@ -1,6 +1,6 @@
 """
-LSADA - Language Services and Data Analysis
-A flexible evaluation framework for content using LLMs
+LinguaLens - LLM-Powered Content Evaluation
+A flexible Python framework for evaluating content quality using Large Language Models (LLMs).
 """
 
 __version__ = "1.0.0"

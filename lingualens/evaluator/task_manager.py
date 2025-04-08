@@ -1,7 +1,7 @@
 from typing import Dict, List, Optional
 import logging
-from src.config.config_manager import config_manager
-from src.models.llm_manager import LLMManager
+from lingualens.config.config_manager import config_manager
+from lingualens.models.llm_manager import LLMManager
 
 class TaskManager:
     """Manages task types and their configurations"""

@@ -2,8 +2,8 @@ import json
 import logging
 from pathlib import Path
 from typing import Dict, Any
-from src.pool import task_pool
-from src.pool import metrics_pool
+from lingualens.pool import task_pool
+from lingualens.pool import metrics_pool
 
 class ConfigManager:
     """Singleton class to manage all configuration loading"""

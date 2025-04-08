@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
 import logging
+import importlib
 from typing import Dict, Optional, Any
 
+#set logging to info
 class BaseLLMClient(ABC):
     """Abstract base class for LLM clients"""
     
@@ -32,12 +34,14 @@ class LLMManager:
         """Initialize an LLM client for the specified vendor"""
         try:
             vendor = vendor.lower()
+            # print(f"Initializing {vendor} LLM client...") # Removed debug print
             if vendor not in cls._supported_vendors:
                 raise ValueError(f"Unsupported vendor: {vendor}")
             
             # Import the appropriate client class
             client_class_name = cls._supported_vendors[vendor]
-            module = __import__(f".{vendor}", fromlist=[client_class_name])
+            module_name = f".{vendor}"
+            module = importlib.import_module(module_name, package=__package__)
             client_class = getattr(module, client_class_name)
             
             # Create client instance

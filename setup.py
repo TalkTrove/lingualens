@@ -1,4 +1,4 @@
-from setuptools import setup, find_namespace_packages
+from setuptools import setup, find_packages
 import os
 
 # Read the contents of README.md
@@ -9,20 +9,22 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 setup(
     name="lingualens",
     version="1.0.0",
-    packages=find_namespace_packages(where="src"),
-    package_dir={"": "src"},
+    packages=find_packages(),
+    package_dir={"": "."},
     package_data={
-        "lingualens.pool": ["*.json"],
+        "lingualens": ["pool/*.json"], # Include JSON files within the lingualens/pool directory
     },
     include_package_data=True,
     install_requires=[
-        "openai>=1.0.0",
-        "anthropic>=0.3.0",
-        "python-dotenv>=0.19.0",
-        "pydantic>=2.0.0",
-        "typing-extensions>=4.0.0",
-        "flask>=2.0.0",  # For web server functionality
-        "requests>=2.25.0",  # For HTTP requests
+        "openai>=1.0.0", # Core LLM client
+        "requests>=2.25.0", # For Cloudverse client and potentially others
+        "numpy>=1.21.0", # For metrics calculations (std dev, median, etc.)
+        "python-dotenv>=0.19.0", # For loading API keys from .env
+        # "pydantic>=2.0.0", # Not directly used in core logic reviewed, consider adding if models use it
+        "typing-extensions>=4.0.0", # Often needed for modern type hints
+        # Optional dependencies below - consider moving to extras_require if not core
+        # "anthropic>=0.3.0",
+        # "flask>=2.0.0",
     ],
     extras_require={
         "dev": [

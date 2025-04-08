@@ -3,7 +3,7 @@ import logging
 import re
 from pathlib import Path
 from typing import Dict, Optional, Tuple
-from src.config.config_manager import config_manager
+from lingualens.config.config_manager import config_manager
 
 class LLMResponseParser:
     """Parses LLM responses for evaluation tasks"""

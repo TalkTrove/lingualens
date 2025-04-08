@@ -1,45 +1,64 @@
 import os
 import logging
-# Assuming the package is installed or src is in PYTHONPATH
-# If running directly from the repo root, adjust imports like:
-# from src.evaluator import Evaluator
-# from src.models import LLMManager
-from lingualens import Evaluator, LLMManager # Use the package name defined in setup.py
+#from lingualens import Evaluator, LLMManager # Use the package name defined in setup.py
+from dotenv import load_dotenv
+from lingualens.evaluator.evaluator import Evaluator
+from lingualens.models.llm_manager import LLMManager, BaseLLMClient
 
 # Configure basic logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def main():
     """Basic usage example for the lingualens package"""
+    
+    # Load environment variables from .env file
+    load_dotenv()
 
     # --- Configuration ---
     # Ensure your OpenAI API key is set as an environment variable
-    api_key = os.getenv("OPENAI_API_KEY")
+    api_key = "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"
     if not api_key:
         logging.error("Error: OPENAI_API_KEY environment variable not set.")
         return
 
     # Specify the task type (optional, can be auto-identified)
     # See src/pool/task_pool.json for available task types
-    task_type = "conversation_evaluation" # Example task ty
+    task_type = "code_generation" # Example task type
 
     # Content to evaluate
     content_to_evaluate = """
-    User: Hi, I'm having trouble with my account login.
-    Agent: Hello! I can help with that. Could you please provide your username?
-    User: My username is testuser123.
-    Agent: Thank you. Let me check your account details. Okay, I see the issue. I've reset your password. Please check your email for instructions.
-    User: Great, thank you!
-    """
+# Request: Generate a Python function to calculate the factorial of a number recursively.
+# Include basic error handling for negative numbers.
+
+def factorial_recursive(n):
+  # Base case: factorial of 0 or 1 is 1
+  if n == 0 or n == 1:
+    return 1
+  # Recursive step: n * factorial(n-1)
+  elif n > 1:
+    return n * factorial_recursive(n-1)
+  # Error handling for negative numbers
+  else:
+    raise ValueError("Factorial is not defined for negative numbers")
+
+# Example usage:
+# print(factorial_recursive(5)) # Output: 120
+# print(factorial_recursive(0)) # Output: 1
+# try:
+#   print(factorial_recursive(-2))
+# except ValueError as e:
+#   print(e) # Output: Factorial is not defined for negative numbers
+"""
 
     # --- Initialization ---
     try:
         # 1. Initialize the LLM Client (e.g., OpenAI)
         # You can specify the model, vendor, etc.
+        print("Initializing LLM client...")
         llm_client = LLMManager.initialize_client(
             vendor="openai",
             api_key=api_key,
-            model_name="gpt-3.5-turbo" # Optional: Specify model if needed
+            model_name="gpt-4o-mini" # Optional: Specify model if needed
         )
 
         # 2. Initialize the Evaluator
@@ -47,7 +66,7 @@ def main():
         # Specify number of evaluations for robustness (default is 1)
         evaluator = Evaluator(
             task_type=task_type,
-            num_evaluations=1, # Increase for more reliable scores
+            num_evaluations=3, # Increase for more reliable scores (tests aggregation)
             include_justification=True # Get explanations for scores
         )
 

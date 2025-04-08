@@ -2,8 +2,8 @@ from typing import List, Dict, Tuple, Any
 import statistics
 import numpy as np
 import logging
-from src.config.config_manager import config_manager
-from src.evaluator.task_manager import TaskManager
+from lingualens.config.config_manager import config_manager
+from lingualens.evaluator.task_manager import TaskManager
 
 class MetricsCalculator:
     """Class for calculating metrics and scores"""
